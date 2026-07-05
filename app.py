@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 app = Flask(__name__)
@@ -10,4 +11,6 @@ def home():
 def about():
     return "<h1>О сайте</h1><p>Это вторая страница моего backend-сайта.</p>"
 
-app.run(host="0.0.0.0", port=5000, debug=True)
+port = int(os.environ.get("PORT", 5000))
+
+app.run(host="0.0.0.0", port=port, debug=True)
