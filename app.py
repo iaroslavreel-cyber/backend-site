@@ -1,16 +1,14 @@
 import os
 
 import psycopg2
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
 
-
 @app.route("/")
 def home():
-    return "<h1>Hello world</h1><p>Это главная страница.</p>"
-
+    return render_template("index.html")
 
 @app.route("/about")
 def about():
