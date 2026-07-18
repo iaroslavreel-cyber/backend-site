@@ -1,11 +1,9 @@
-name: Publish Docker image v1.1.0
+name: Publish Docker image
 
 on:
   push:
-    branches:
-      - integration
-    paths:
-      - ".github/workflows/publish-v1.1.0.yml"
+    tags:
+      - "v*"
 
 permissions:
   contents: read
@@ -14,7 +12,6 @@ permissions:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: iaroslavreel-cyber/backend-site
-  IMAGE_TAG: v1.1.0
 
 jobs:
   build-and-push:
@@ -22,10 +19,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get code from tag v1.1.0
+      - name: Get tagged code
         uses: actions/checkout@v7
-        with:
-          ref: v1.1.0
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
@@ -44,9 +39,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:integration-latest
           labels: |
-            org.opencontainers.image.source=https://github.com/iaroslavreel-cyber/backend-site
-            org.opencontainers.image.version=${{ env.IMAGE_TAG }}
-            org.opencontainers.image.description=Integration Docker image for backend-site
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.version=${{ github.ref_name }}
