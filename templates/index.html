@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Онлайн школа — Главная страница</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>YT Academy | Главная страница</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Шрифты: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Joti+One&family=Rubik+Glitch+Pop&family=Rubik+Iso&family=Stalinist+One&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <header class="navigation_window">
+        <h1 class="navigation_window__School_Name">
+            Yaroslav Tutor Academy
+        </h1>
 
-    <header>
-        <h1>Онлайн школа</h1>
+        <nav class="navigation_window__reference">
+            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+                Главная
+            </a>
 
-        <nav>
-            <a href="/">Главная</a>
-            <a href="#courses">Курсы</a>
-            <a href="/about">О нас</a>
-            <a href="#help">Помощь</a>
+            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+                Учёба
+            </a>
+
+            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+                О нас
+            </a>
+
+            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+                Поддержка
+            </a>
         </nav>
     </header>
 
     <main>
         <section>
+          <br>
             <h2>Добро пожаловать</h2>
 
             <p>
@@ -99,20 +120,21 @@
 
     <footer>
         <p>Если вам стало интересно заниматься, отправьте свои контакты</p>
-    
-<form action="" method="get">
-  <p>
-    <label for="name">Введите имя:</label>
-    <input type="text" name="name" id="name" required>
-  </p>
-  <p>
-    <label for="email">Введите email:</label>
-    <input type="email" name="email" id="email" required>
-  </p>
-  <button type="submit">Отправить</button>
-</form>
+
+        <form action="" method="get">
+            <p>
+                <label for="name">Введите имя:</label>
+                <input type="text" name="name" id="name" required>
+            </p>
+            <p>
+                <label for="email">Введите email:</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <button type="submit">Отправить</button>
+        </form>
 
     </footer>
 
 </body>
+
 </html>
