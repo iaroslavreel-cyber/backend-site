@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Academy | Курс по математике</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="navigation-window">
+        <a class="navigation-window__school-name" href="{{ url_for('home') }}">
+            Yaroslav Tutor Academy
+        </a>
+
+        <nav class="navigation-window__references">
+            <a class="navigation-window__button" href="{{ url_for('home') }}">
+                Главная
+            </a>
+
+            <a class="navigation-window__button navigation-window__button--active"
+                href="{{ url_for('courses') }}">
+                Курсы
+            </a>
+
+            <a class="navigation-window__button" href="{{ url_for('about') }}">
+                О нас
+            </a>
+
+            <a class="navigation-window__button" href="{{ url_for('support') }}">
+                Поддержка
+            </a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="page-heading">
+            <p class="page-heading__label">Курс 01</p>
+            <h1 class="page-heading__title">Математика</h1>
+            <p class="page-heading__text">
+                Курс помогает повторить основные темы школьной математики
+                и научиться решать задачи осознанно.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Уроки курса</h2>
+
+            <div class="lesson-list">
+                <article class="lesson">
+                    <div class="lesson__heading">
+                        <span class="lesson__number">Урок 1</span>
+                        <h3 class="lesson__title">Линейные уравнения</h3>
+                    </div>
+
+                    <p class="lesson__text">
+                        Разберём, что такое уравнение,
+                        неизвестная величина и корень уравнения.
+                    </p>
+
+                    <div class="lesson__links">
+                        <a class="small-link" href="#">Видеоурок</a>
+                        <a class="small-link" href="#">Конспект</a>
+                        <a class="small-link" href="#">Домашняя работа</a>
+                    </div>
+                </article>
+
+                <article class="lesson">
+                    <div class="lesson__heading">
+                        <span class="lesson__number">Урок 2</span>
+                        <h3 class="lesson__title">Функции и графики</h3>
+                    </div>
+
+                    <p class="lesson__text">
+                        Узнаем, как одна величина зависит от другой
+                        и как показать эту зависимость на графике.
+                    </p>
+
+                    <div class="lesson__links">
+                        <a class="small-link" href="#">Видеоурок</a>
+                        <a class="small-link" href="#">Конспект</a>
+                        <a class="small-link" href="#">Домашняя работа</a>
+                    </div>
+                </article>
+
+                <article class="lesson">
+                    <div class="lesson__heading">
+                        <span class="lesson__number">Урок 3</span>
+                        <h3 class="lesson__title">Основы геометрии</h3>
+                    </div>
+
+                    <p class="lesson__text">
+                        Повторим основные фигуры, углы
+                        и простые свойства треугольников.
+                    </p>
+
+                    <div class="lesson__links">
+                        <a class="small-link" href="#">Видеоурок</a>
+                        <a class="small-link" href="#">Конспект</a>
+                        <a class="small-link" href="#">Домашняя работа</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <p class="notice">
+            Ссылки на материалы пока учебные. Позже вместо символа
+            <code>#</code> можно поставить настоящие адреса видео и файлов.
+        </p>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Yaroslav Tutor Academy</p>
+        <p>Учебный проект онлайн-школы</p>
+    </footer>
+</body>
+
+</html>
