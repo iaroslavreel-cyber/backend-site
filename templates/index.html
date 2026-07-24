@@ -4,137 +4,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT Academy | Главная страница</title>
-    <link rel="stylesheet" href="../static/style.css">
-    <!-- Шрифты: -->
+    <title>YT Academy | Главная</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Joti+One&family=Rubik+Glitch+Pop&family=Rubik+Iso&family=Stalinist+One&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    <header class="navigation_window">
-        <h1 class="navigation_window__School_Name">
+    <header class="navigation-window">
+        <a class="navigation-window__school-name" href="{{ url_for('home') }}">
             Yaroslav Tutor Academy
-        </h1>
+        </a>
 
-        <nav class="navigation_window__reference">
-            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+        <nav class="navigation-window__references">
+            <a class="navigation-window__button navigation-window__button--active"
+                href="{{ url_for('home') }}">
                 Главная
             </a>
 
-            <a class="navigation_window__button" href="https://doka.guide/html/a/">
-                Учёба
+            <a class="navigation-window__button" href="{{ url_for('courses') }}">
+                Курсы
             </a>
 
-            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+            <a class="navigation-window__button" href="{{ url_for('about') }}">
                 О нас
             </a>
 
-            <a class="navigation_window__button" href="https://doka.guide/html/a/">
+            <a class="navigation-window__button" href="{{ url_for('support') }}">
                 Поддержка
             </a>
         </nav>
     </header>
 
-    <main>
-        <section>
-          <br>
-            <h2>Добро пожаловать</h2>
+    <main class="page">
+        <section class="hero">
+            <p class="hero__label">Математика • Физика • Информатика</p>
 
-            <p>
-                Это сайт онлайн-школы, созданной для учебного проекта.
-                Пока здесь нет сложных возможностей, но постепенно сайт будет развиваться:
-                появятся страницы курсов, уроки, материалы и полезная информация для учеников.
+            <h1 class="hero__title">
+                Учись понимать,<br>
+                а не запоминать
+            </h1>
+
+            <p class="hero__text">
+                Простые и последовательные курсы для школьников.
+                Разбираем сложные темы по шагам, решаем задачи
+                и учимся применять знания самостоятельно.
             </p>
+
+            <a class="main-button" href="{{ url_for('courses') }}">
+                Посмотреть курсы
+            </a>
         </section>
 
-        <section>
-            <h2>Для кого этот сайт?</h2>
+        <section class="content-section">
+            <h2 class="section-title">Что есть на сайте</h2>
 
-            <p>
-                Сайт предназначен для школьников, которые хотят повторить материал,
-                разобраться в сложных темах и подготовиться к занятиям или экзаменам.
-            </p>
+            <div class="card-list">
+                <article class="info-card">
+                    <h3 class="info-card__title">Понятные объяснения</h3>
+                    <p class="info-card__text">
+                        Каждая тема разбирается от простого к сложному,
+                        с определениями и примерами.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3 class="info-card__title">Материалы к урокам</h3>
+                    <p class="info-card__text">
+                        Для занятий будут доступны видео,
+                        конспекты и домашние задания.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3 class="info-card__title">Подготовка к экзаменам</h3>
+                    <p class="info-card__text">
+                        Курсы помогают повторить школьную программу
+                        и подготовиться к контрольным и экзаменам.
+                    </p>
+                </article>
+            </div>
         </section>
 
-        <section id="courses">
-            <h2>Какие курсы у нас есть?</h2>
+        <section class="content-section">
+            <h2 class="section-title">Отзывы учеников</h2>
 
-            <ul>
-                <li><a href="#math-course">Курс по математике</a></li>
-                <li><a href="#russian-course">Курс по русскому языку</a></li>
-                <li><a href="#physics-course">Курс по физике</a></li>
-                <li><a href="#informatics-course">Курс по информатике</a></li>
-            </ul>
+            <div class="card-list">
+                <blockquote class="review">
+                    <p class="review__text">
+                        «Наконец понял, почему формулы работают,
+                        а не просто выучил их».
+                    </p>
+                    <cite class="review__author">Алексей, 9 класс</cite>
+                </blockquote>
+
+                <blockquote class="review">
+                    <p class="review__text">
+                        «Объяснения идут последовательно,
+                        поэтому не теряешься в новой теме».
+                    </p>
+                    <cite class="review__author">Мария, 10 класс</cite>
+                </blockquote>
+            </div>
         </section>
 
-        <section id="math-course">
-            <h3>Курс по математике</h3>
+        <section class="contact-block">
+            <div>
+                <h2 class="contact-block__title">Есть вопросы?</h2>
+                <p class="contact-block__text">
+                    Напишите нам, и мы поможем выбрать подходящий курс.
+                </p>
+            </div>
 
-            <p>
-                В этом курсе ученики смогут повторить основные темы школьной математики:
-                уравнения, функции, графики, геометрию и задачи.
-            </p>
-        </section>
-
-        <section id="russian-course">
-            <h3>Курс по русскому языку</h3>
-
-            <p>
-                Курс поможет повторить правила орфографии, пунктуации,
-                а также подготовиться к письменным заданиям.
-            </p>
-        </section>
-
-        <section id="physics-course">
-            <h3>Курс по физике</h3>
-
-            <p>
-                В курсе по физике будут разобраны основные темы:
-                механика, электричество, оптика и простые задачи.
-            </p>
-        </section>
-
-        <section id="informatics-course">
-            <h3>Курс по информатике</h3>
-
-            <p>
-                Этот курс будет посвящён основам программирования,
-                алгоритмам и работе с данными.
-            </p>
-        </section>
-
-        <section id="help">
-            <h2>Помощь</h2>
-
-            <p>
-                Если ученик не понимает, с чего начать, он может выбрать интересующий предмет
-                и открыть описание курса. Позже здесь появятся отдельные страницы уроков
-                и учебные материалы.
-            </p>
+            <a class="main-button" href="{{ url_for('support') }}">
+                Связаться
+            </a>
         </section>
     </main>
 
-    <footer>
-        <p>Если вам стало интересно заниматься, отправьте свои контакты</p>
-
-        <form action="" method="get">
-            <p>
-                <label for="name">Введите имя:</label>
-                <input type="text" name="name" id="name" required>
-            </p>
-            <p>
-                <label for="email">Введите email:</label>
-                <input type="email" name="email" id="email" required>
-            </p>
-            <button type="submit">Отправить</button>
-        </form>
-
+    <footer class="footer">
+        <p>© 2026 Yaroslav Tutor Academy</p>
+        <p>Учебный проект онлайн-школы</p>
     </footer>
-
 </body>
 
 </html>

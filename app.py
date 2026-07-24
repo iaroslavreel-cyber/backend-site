@@ -3,16 +3,32 @@ import os
 import psycopg2
 from flask import Flask, render_template
 
-
 app = Flask(__name__)
+
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
+@app.route("/courses")
+def courses():
+    return render_template("courses.html")
+
+
+@app.route("/courses/math")
+def math_course():
+    return render_template("math_course.html")
+
+
 @app.route("/about")
 def about():
-    return "<h1>О сайте</h1><p>Это вторая страница моего backend-сайта.</p>"
+    return render_template("about.html")
+
+
+@app.route("/support")
+def support():
+    return render_template("support.html")
 
 
 @app.route("/db-check")
