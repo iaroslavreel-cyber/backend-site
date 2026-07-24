@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Academy | Курсы</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="navigation-window">
+        <a class="navigation-window__school-name" href="{{ url_for('home') }}">
+            Yaroslav Tutor Academy
+        </a>
+
+        <nav class="navigation-window__references">
+            <a class="navigation-window__button" href="{{ url_for('home') }}">
+                Главная
+            </a>
+
+            <a class="navigation-window__button navigation-window__button--active"
+                href="{{ url_for('courses') }}">
+                Курсы
+            </a>
+
+            <a class="navigation-window__button" href="{{ url_for('about') }}">
+                О нас
+            </a>
+
+            <a class="navigation-window__button" href="{{ url_for('support') }}">
+                Поддержка
+            </a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="page-heading">
+            <p class="page-heading__label">Учебные направления</p>
+            <h1 class="page-heading__title">Наши курсы</h1>
+            <p class="page-heading__text">
+                Выберите предмет, который хотите изучать.
+                Сейчас полностью оформлена страница курса по математике.
+            </p>
+        </section>
+
+        <section class="course-list">
+            <article class="course-card">
+                <p class="course-card__number">01</p>
+                <h2 class="course-card__title">Математика</h2>
+                <p class="course-card__text">
+                    Уравнения, функции, графики, геометрия
+                    и последовательное решение задач.
+                </p>
+
+                <a class="card-button" href="{{ url_for('math_course') }}">
+                    Открыть курс
+                </a>
+            </article>
+
+            <article class="course-card">
+                <p class="course-card__number">02</p>
+                <h2 class="course-card__title">Физика</h2>
+                <p class="course-card__text">
+                    Механика, электричество, оптика
+                    и физический смысл основных формул.
+                </p>
+
+                <span class="course-card__status">Скоро</span>
+            </article>
+
+            <article class="course-card">
+                <p class="course-card__number">03</p>
+                <h2 class="course-card__title">Информатика</h2>
+                <p class="course-card__text">
+                    Основы алгоритмов, программирования
+                    и работы с данными.
+                </p>
+
+                <span class="course-card__status">Скоро</span>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Yaroslav Tutor Academy</p>
+        <p>Учебный проект онлайн-школы</p>
+    </footer>
+</body>
+
+</html>

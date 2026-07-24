@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Academy | О нас</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="navigation-window">
+        <a class="navigation-window__school-name" href="{{ url_for('home') }}">
+            Yaroslav Tutor Academy
+        </a>
+
+        <nav class="navigation-window__references">
+            <a class="navigation-window__button" href="{{ url_for('home') }}">
+                Главная
+            </a>
+
+            <a class="navigation-window__button" href="{{ url_for('courses') }}">
+                Курсы
+            </a>
+
+            <a class="navigation-window__button navigation-window__button--active"
+                href="{{ url_for('about') }}">
+                О нас
+            </a>
+
+            <a class="navigation-window__button" href="{{ url_for('support') }}">
+                Поддержка
+            </a>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section class="page-heading">
+            <p class="page-heading__label">О проекте</p>
+            <h1 class="page-heading__title">Yaroslav Tutor Academy</h1>
+            <p class="page-heading__text">
+                Учебный сайт онлайн-школы, созданный для практики
+                HTML, CSS, Python, Flask и развёртывания сайта.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Наша идея</h2>
+
+            <div class="about-block">
+                <p>
+                    Мы хотим объяснять математику, физику и информатику
+                    последовательно и понятным языком.
+                </p>
+
+                <p>
+                    Главная цель занятий — не заставить ученика запомнить
+                    готовое решение, а помочь ему понять ход рассуждений
+                    и научиться решать задачи самостоятельно.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Почему нам можно доверять</h2>
+
+            <div class="card-list">
+                <article class="info-card">
+                    <h3 class="info-card__title">Опыт преподавания</h3>
+                    <p class="info-card__text">
+                        Материалы создаются с учётом реальных вопросов,
+                        которые возникают у учеников на занятиях.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3 class="info-card__title">Проверенные материалы</h3>
+                    <p class="info-card__text">
+                        Перед уроком тема изучается глубже,
+                        чем требуется для обычного школьного ответа.
+                    </p>
+                </article>
+
+                <article class="info-card">
+                    <h3 class="info-card__title">Развитие проекта</h3>
+                    <p class="info-card__text">
+                        Позже на странице можно разместить настоящие
+                        сертификаты, документы и опыт преподавателей.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Yaroslav Tutor Academy</p>
+        <p>Учебный проект онлайн-школы</p>
+    </footer>
+</body>
+
+</html>
