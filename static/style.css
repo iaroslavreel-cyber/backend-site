@@ -1,69 +1,452 @@
-/* 
-font-family: "Rubik Glitch Pop", system-ui;
-font-family: "Stalinist One", sans-serif;
-font-family: "Joti One", serif;
-font-family: "Rubik Iso", system-ui; */
-body {
-    margin: 0px;
+/* -------------------- Общие настройки -------------------- */
+
+* {
+    box-sizing: border-box;
 }
 
-main {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+html {
+    scroll-behavior: smooth;
 }
-/* -----------------------header----------------------- */
-.navigation_window {
+
+body {
+    margin: 0;
+    background-color: #070b12;
+    color: #eafcff;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+code {
+    color: #00ffff;
+}
+
+
+/* -------------------- Хедер -------------------- */
+
+.navigation-window {
     display: flex;
     align-items: stretch;
     justify-content: center;
     flex-wrap: wrap;
-    text-align: center;
-    background-color: #000000;
-    margin: 0px;
-    padding: 0px;
-    position: fixed;
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
     width: 100%;
-    top: 0px;
-    border-width: 0px;
-    border-color: black;
-    border-style: solid;
-    box-shadow: 0px 2px 14px rgb(0, 114, 255);
+    background-color: #000000;
+    box-shadow: 0 2px 14px rgb(0 114 255);
 }
-.navigation_window__School_Name {
-    margin: 0px;
-    font-size: 1.5vw;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, sans-serif;
-    color: rgb(0, 255, 255);
-    display: inline-block;
-    text-align: left;
-    margin-left: 0vw;
+
+.navigation-window__school-name {
+    display: flex;
+    align-items: center;
+
     margin-right: 5vw;
-    margin-top: 0px;
-    opacity: 0.6;
-}
+    padding: 14px 0;
 
-.navigation_window__reference {
-    font-size: 1.5vw;
-    display: flex;
-    align-items: center;
-
-}
-
-.navigation_window__button {
-    display: flex;
-    align-items: center;
-    font-family: "Stalinist One", sans-serif;
-    color: rgb(255, 255, 255);
-    font-style: normal;
+    color: rgb(0 255 255);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 24px;
     text-decoration: none;
-    margin: 0px 2vw;
-    border-right-width: 0px;
-    border-right-style: outset;
-    border-right-color: #ffffff;
-    border-left-width: 0px;
-    border-left-style: outset;
-    border-left-color: #ffffff;
-    box-shadow: 1px 0px 10px rgb(67 194 255 / 65%);
-    border-radius: 10%;
+    opacity: 0.75;
 }
-/* -----------------------header----------------------- */
 
+.navigation-window__references {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.navigation-window__button {
+    display: flex;
+    align-items: center;
+
+    padding: 18px 24px;
+
+    color: #ffffff;
+    font-family: "Stalinist One", sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+
+    border-radius: 8px;
+    box-shadow: 1px 0 10px rgb(67 194 255 / 65%);
+}
+
+.navigation-window__button:hover,
+.navigation-window__button--active {
+    color: #00ffff;
+    background-color: #101a24;
+}
+
+
+/* -------------------- Основная область -------------------- */
+
+.page {
+    width: min(1100px, 90%);
+    min-height: 75vh;
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.hero {
+    padding: 70px 0 90px;
+}
+
+.hero__label,
+.page-heading__label {
+    margin: 0 0 12px;
+    color: #00ffff;
+    font-family: "Stalinist One", sans-serif;
+    font-size: 13px;
+}
+
+.hero__title {
+    max-width: 850px;
+    margin: 0;
+    font-size: clamp(42px, 8vw, 92px);
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.hero__text {
+    max-width: 680px;
+    margin: 28px 0;
+    color: #b9cbd1;
+    font-size: 19px;
+}
+
+.main-button,
+.card-button {
+    display: inline-block;
+    padding: 13px 22px;
+
+    color: #001014;
+    background-color: #00ffff;
+    font-weight: bold;
+    text-decoration: none;
+
+    border: 2px solid #00ffff;
+    border-radius: 6px;
+    box-shadow: 0 0 14px rgb(0 255 255 / 45%);
+}
+
+.main-button:hover,
+.card-button:hover {
+    color: #00ffff;
+    background-color: transparent;
+}
+
+.content-section {
+    margin-top: 70px;
+}
+
+.section-title {
+    margin-bottom: 28px;
+    color: #00ffff;
+    font-family: "Stalinist One", sans-serif;
+    font-size: clamp(24px, 4vw, 38px);
+}
+
+.card-list,
+.course-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.info-card,
+.review,
+.course-card {
+    flex: 1 1 280px;
+
+    margin: 0;
+    padding: 28px;
+
+    background-color: #0d141e;
+    border: 1px solid #17485a;
+    border-radius: 10px;
+    box-shadow: 0 0 16px rgb(0 114 255 / 15%);
+}
+
+.info-card__title,
+.course-card__title {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.info-card__text,
+.course-card__text,
+.review__text {
+    color: #b9cbd1;
+}
+
+.review__author {
+    color: #00ffff;
+    font-style: normal;
+}
+
+.contact-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    margin-top: 80px;
+    padding: 34px;
+
+    background-color: #0d141e;
+    border-left: 5px solid #00ffff;
+}
+
+.contact-block__title {
+    margin: 0;
+}
+
+.contact-block__text {
+    margin-bottom: 0;
+    color: #b9cbd1;
+}
+
+
+/* -------------------- Заголовки внутренних страниц -------------------- */
+
+.page-heading {
+    max-width: 800px;
+    margin-bottom: 60px;
+}
+
+.page-heading__title {
+    margin: 0;
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.page-heading__text {
+    color: #b9cbd1;
+    font-size: 19px;
+}
+
+
+/* -------------------- Курсы -------------------- */
+
+.course-card {
+    position: relative;
+}
+
+.course-card__number {
+    margin: 0 0 18px;
+    color: #00ffff;
+    font-family: "Stalinist One", sans-serif;
+}
+
+.course-card__status {
+    display: inline-block;
+    padding: 8px 14px;
+    color: #7d9198;
+    border: 1px solid #41525a;
+    border-radius: 6px;
+}
+
+
+/* -------------------- Уроки -------------------- */
+
+.lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lesson {
+    padding: 26px;
+    background-color: #0d141e;
+    border-left: 4px solid #00ffff;
+}
+
+.lesson__heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.lesson__number {
+    color: #00ffff;
+    font-family: "Stalinist One", sans-serif;
+    font-size: 12px;
+}
+
+.lesson__title {
+    margin: 0;
+    font-size: 25px;
+}
+
+.lesson__text {
+    color: #b9cbd1;
+}
+
+.lesson__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.small-link {
+    padding: 8px 12px;
+    color: #00ffff;
+    text-decoration: none;
+    border: 1px solid #176b78;
+    border-radius: 5px;
+}
+
+.small-link:hover {
+    background-color: #102a31;
+}
+
+.notice {
+    margin-top: 30px;
+    padding: 18px;
+    color: #b9cbd1;
+    background-color: #101820;
+    border: 1px dashed #176b78;
+}
+
+
+/* -------------------- О нас -------------------- */
+
+.about-block {
+    padding: 30px;
+    color: #c6d6db;
+    background-color: #0d141e;
+    border-left: 5px solid #00ffff;
+}
+
+
+/* -------------------- Поддержка -------------------- */
+
+.form-section {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.contact-form,
+.support-info {
+    flex: 1 1 320px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form__label {
+    margin: 14px 0 7px;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.contact-form__input {
+    width: 100%;
+    padding: 13px;
+
+    color: #ffffff;
+    background-color: #0d141e;
+
+    border: 1px solid #176b78;
+    border-radius: 5px;
+}
+
+.contact-form__input:focus {
+    outline: 2px solid #00ffff;
+}
+
+.contact-form__input--message {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.main-button--form {
+    margin-top: 22px;
+    cursor: pointer;
+}
+
+.support-info {
+    padding: 28px;
+    background-color: #0d141e;
+    border: 1px solid #17485a;
+}
+
+.support-info__title {
+    margin-top: 0;
+    color: #00ffff;
+}
+
+.support-info__note {
+    color: #7d9198;
+}
+
+
+/* -------------------- Футер -------------------- */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    padding: 25px 5%;
+
+    color: #81939a;
+    background-color: #000000;
+    border-top: 1px solid #17485a;
+}
+
+
+/* -------------------- Маленькие экраны -------------------- */
+
+@media (max-width: 760px) {
+    .navigation-window {
+        position: static;
+    }
+
+    .navigation-window__school-name {
+        width: 100%;
+        margin-right: 0;
+        padding: 16px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .navigation-window__references {
+        width: 100%;
+    }
+
+    .navigation-window__button {
+        flex: 1 1 50%;
+        justify-content: center;
+        padding: 14px 8px;
+        font-size: 11px;
+        border-radius: 0;
+    }
+
+    .page {
+        padding-top: 45px;
+    }
+
+    .hero {
+        padding-top: 35px;
+    }
+
+    .contact-block {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
