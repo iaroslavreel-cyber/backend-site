@@ -3,7 +3,7 @@ import os
 import sys
 
 import psycopg2
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 log_level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
@@ -28,6 +28,15 @@ logging.basicConfig(
 
 
 app = Flask(__name__)
+
+
+def get_client_ip():
+    forwarded_for = request.headers.get("X-Forwarded-For")
+
+    if forwarded_for:
+        return forwarded_for.split(",")[0].strip()
+
+    return request.remote_addr or "unknown"
 
 
 @app.route("/")
