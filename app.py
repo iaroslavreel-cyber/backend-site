@@ -1,9 +1,11 @@
 import logging
 import os
 import sys
+import time
+from uuid import uuid4
 
 import psycopg2
-from flask import Flask, render_template, request
+from flask import Flask, g, render_template, request
 
 
 log_level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
@@ -37,6 +39,50 @@ def get_client_ip():
         return forwarded_for.split(",")[0].strip()
 
     return request.remote_addr or "unknown"
+
+
+@app.before_request
+def prepare_request_logging():
+    g.request_started_at = time.perf_counter()
+
+    g.request_id = (
+        request.headers.get("Rndr-Id")
+        or str(uuid4())
+    )
+
+    g.user_name = "anonymous"
+
+
+@app.after_request
+def log_request(response):
+    if request.path.startswith("/static/"):
+        return response
+
+    duration_ms = (
+        time.perf_counter() - g.request_started_at
+    ) * 1000
+
+    app.logger.info(
+        (
+            "event=http_request "
+            "user=%s "
+            "method=%s "
+            "path=%s "
+            "ip=%s "
+            "status=%s "
+            "duration_ms=%.1f "
+            "request_id=%s"
+        ),
+        g.user_name,
+        request.method,
+        request.path,
+        get_client_ip(),
+        response.status_code,
+        duration_ms,
+        g.request_id,
+    )
+
+    return response
 
 
 @app.route("/")
