@@ -7,6 +7,8 @@ from uuid import uuid4
 import psycopg2
 from flask import Flask, g, render_template, request
 
+from support_service import process_support_question
+
 
 log_level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
 
@@ -108,18 +110,23 @@ def about():
 @app.route("/support", methods=["GET", "POST"])
 def support():
     if request.method == "POST":
-        user_name = request.form.get("name", "").strip()
-        email = request.form.get("email", "").strip()
-        message = request.form.get("message", "").strip()
+        try:
+            question = process_support_question(
+                request.form.get("name", ""),
+                request.form.get("email", ""),
+                request.form.get("message", ""),
+            )
 
-        if not user_name or not email or not message:
+        except ValueError as error:
             return (
                 render_template(
                     "support.html",
-                    error_message="Заполните все поля формы.",
+                    error_message=str(error),
                 ),
                 400,
             )
+
+        g.user_name = question["user_name"]
 
         return render_template(
             "support.html",
