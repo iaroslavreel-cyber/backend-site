@@ -22,6 +22,29 @@
         </a>
 
         <nav class="navigation-window__references">
+            <a class="navigation-window__button" href="{{ url_for('home') }}"><!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Academy | Поддержка</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="navigation-window">
+        <a class="navigation-window__school-name" href="{{ url_for('home') }}">
+            Yaroslav Tutor Academy
+        </a>
+
+        <nav class="navigation-window__references">
             <a class="navigation-window__button" href="{{ url_for('home') }}">
                 Главная
             </a>
@@ -34,7 +57,8 @@
                 О нас
             </a>
 
-            <a class="navigation-window__button navigation-window__button--active"
+            <a
+                class="navigation-window__button navigation-window__button--active"
                 href="{{ url_for('support') }}">
                 Поддержка
             </a>
@@ -44,7 +68,9 @@
     <main class="page">
         <section class="page-heading">
             <p class="page-heading__label">Обратная связь</p>
+
             <h1 class="page-heading__title">Поддержка</h1>
+
             <p class="page-heading__text">
                 Оставьте контакты и кратко напишите,
                 какой предмет или курс вас интересует.
@@ -52,11 +78,17 @@
         </section>
 
         <section class="form-section">
-            <form class="contact-form" action="" method="get">
+            <form
+                class="contact-form"
+                action="{{ url_for('support') }}"
+                method="post">
+
                 <label class="contact-form__label" for="name">
                     Ваше имя
                 </label>
-                <input class="contact-form__input"
+
+                <input
+                    class="contact-form__input"
                     type="text"
                     name="name"
                     id="name"
@@ -65,7 +97,9 @@
                 <label class="contact-form__label" for="email">
                     Электронная почта
                 </label>
-                <input class="contact-form__input"
+
+                <input
+                    class="contact-form__input"
                     type="email"
                     name="email"
                     id="email"
@@ -74,22 +108,28 @@
                 <label class="contact-form__label" for="message">
                     Ваш вопрос
                 </label>
-                <textarea class="contact-form__input contact-form__input--message"
+
+                <textarea
+                    class="contact-form__input contact-form__input--message"
                     name="message"
                     id="message"
                     required></textarea>
 
-                <button class="main-button main-button--form" type="submit">
+                <button
+                    class="main-button main-button--form"
+                    type="submit">
                     Отправить
                 </button>
             </form>
 
             <div class="support-info">
                 <h2 class="support-info__title">Контакты</h2>
+
                 <p>Email: tutor@example.com</p>
                 <p>Telegram: @yasroslav_tutor</p>
+
                 <p class="support-info__note">
-                  всякая информация, полезная и не очень...
+                    всякая информация, полезная и не очень...
                 </p>
             </div>
         </section>
