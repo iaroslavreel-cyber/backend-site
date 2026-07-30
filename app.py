@@ -105,8 +105,27 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/support")
+@app.route("/support", methods=["GET", "POST"])
 def support():
+    if request.method == "POST":
+        user_name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        message = request.form.get("message", "").strip()
+
+        if not user_name or not email or not message:
+            return (
+                render_template(
+                    "support.html",
+                    error_message="Заполните все поля формы.",
+                ),
+                400,
+            )
+
+        return render_template(
+            "support.html",
+            success_message="Ваш вопрос получен.",
+        )
+
     return render_template("support.html")
 
 
