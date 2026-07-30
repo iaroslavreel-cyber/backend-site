@@ -39,26 +39,61 @@
 </head>
 
 <body>
+    <header class="navigation-window"><!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YT Academy | Поддержка</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
     <header class="navigation-window">
-        <a class="navigation-window__school-name" href="{{ url_for('home') }}">
+        <a
+            class="navigation-window__school-name"
+            href="{{ url_for('home') }}">
             Yaroslav Tutor Academy
         </a>
 
         <nav class="navigation-window__references">
-            <a class="navigation-window__button" href="{{ url_for('home') }}">
+            <a
+                class="navigation-window__button"
+                href="{{ url_for('home') }}">
                 Главная
             </a>
 
-            <a class="navigation-window__button" href="{{ url_for('courses') }}">
+            <a
+                class="navigation-window__button"
+                href="{{ url_for('courses') }}">
                 Курсы
             </a>
 
-            <a class="navigation-window__button" href="{{ url_for('about') }}">
+            <a
+                class="navigation-window__button"
+                href="{{ url_for('about') }}">
                 О нас
             </a>
 
             <a
-                class="navigation-window__button navigation-window__button--active"
+                class="navigation-window__button
+                       navigation-window__button--active"
                 href="{{ url_for('support') }}">
                 Поддержка
             </a>
@@ -67,9 +102,13 @@
 
     <main class="page">
         <section class="page-heading">
-            <p class="page-heading__label">Обратная связь</p>
+            <p class="page-heading__label">
+                Обратная связь
+            </p>
 
-            <h1 class="page-heading__title">Поддержка</h1>
+            <h1 class="page-heading__title">
+                Поддержка
+            </h1>
 
             <p class="page-heading__text">
                 Оставьте контакты и кратко напишите,
@@ -83,7 +122,21 @@
                 action="{{ url_for('support') }}"
                 method="post">
 
-                <label class="contact-form__label" for="name">
+                {% if error_message %}
+                    <p class="contact-form__message">
+                        {{ error_message }}
+                    </p>
+                {% endif %}
+
+                {% if success_message %}
+                    <p class="contact-form__message">
+                        {{ success_message }}
+                    </p>
+                {% endif %}
+
+                <label
+                    class="contact-form__label"
+                    for="name">
                     Ваше имя
                 </label>
 
@@ -94,7 +147,9 @@
                     id="name"
                     required>
 
-                <label class="contact-form__label" for="email">
+                <label
+                    class="contact-form__label"
+                    for="email">
                     Электронная почта
                 </label>
 
@@ -105,12 +160,15 @@
                     id="email"
                     required>
 
-                <label class="contact-form__label" for="message">
+                <label
+                    class="contact-form__label"
+                    for="message">
                     Ваш вопрос
                 </label>
 
                 <textarea
-                    class="contact-form__input contact-form__input--message"
+                    class="contact-form__input
+                           contact-form__input--message"
                     name="message"
                     id="message"
                     required></textarea>
@@ -123,9 +181,12 @@
             </form>
 
             <div class="support-info">
-                <h2 class="support-info__title">Контакты</h2>
+                <h2 class="support-info__title">
+                    Контакты
+                </h2>
 
                 <p>Email: tutor@example.com</p>
+
                 <p>Telegram: @yasroslav_tutor</p>
 
                 <p class="support-info__note">
