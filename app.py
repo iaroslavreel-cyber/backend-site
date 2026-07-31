@@ -7,7 +7,10 @@ from uuid import uuid4
 import psycopg2
 from flask import Flask, g, render_template, request
 
-from support_service import process_support_question
+from support_service import (
+    SupportQuestionProcessingError,
+    process_support_question,
+)
 
 
 log_level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
@@ -85,6 +88,36 @@ def log_request(response):
     )
 
     return response
+
+
+@app.errorhandler(SupportQuestionProcessingError)
+def handle_support_question_processing_error(error):
+    g.user_name = error.user_name
+
+    app.logger.exception(
+        (
+            "event=support_question_processing_failed "
+            "user=%s "
+            "path=%s "
+            "ip=%s "
+            "request_id=%s"
+        ),
+        error.user_name,
+        request.path,
+        get_client_ip(),
+        g.request_id,
+    )
+
+    return (
+        render_template(
+            "support.html",
+            error_message=(
+                "Не удалось обработать ваш вопрос. "
+                "Попробуйте отправить его позже."
+            ),
+        ),
+        500,
+    )
 
 
 @app.route("/")
