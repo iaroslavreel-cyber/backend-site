@@ -128,6 +128,18 @@ def support():
 
         g.user_name = question["user_name"]
 
+        app.logger.info(
+            (
+                "event=support_question_saved "
+                "user=%s "
+                "question_id=%s "
+                "request_id=%s"
+            ),
+            question["user_name"],
+            question["id"],
+            g.request_id,
+        )
+
         return render_template(
             "support.html",
             success_message=(
