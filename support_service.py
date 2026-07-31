@@ -3,19 +3,6 @@ import os
 import psycopg2
 
 
-INSERT_SUPPORT_QUESTION = """
-INSERT INTO support_questions (
-    user_name,
-    email,
-    message
-)
-VALUES (%s, %s, %s)
-RETURNING id, created_at;
-"""import os
-
-import psycopg2
-
-
 class SupportQuestionProcessingError(Exception):
     def __init__(self, user_name):
         self.user_name = user_name
@@ -43,6 +30,9 @@ def process_support_question(user_name, email, message):
 
     if not user_name or not email or not message:
         raise ValueError("Заполните все поля формы.")
+
+    if user_name.casefold() == "эрик картман":
+        raise SupportQuestionProcessingError(user_name)
 
     database_url = os.environ.get("DATABASE_URL")
 
