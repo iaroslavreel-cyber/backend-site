@@ -11,6 +11,28 @@ INSERT INTO support_questions (
 )
 VALUES (%s, %s, %s)
 RETURNING id, created_at;
+"""import os
+
+import psycopg2
+
+
+class SupportQuestionProcessingError(Exception):
+    def __init__(self, user_name):
+        self.user_name = user_name
+
+        super().__init__(
+            f"Не удалось обработать вопрос пользователя {user_name}."
+        )
+
+
+INSERT_SUPPORT_QUESTION = """
+INSERT INTO support_questions (
+    user_name,
+    email,
+    message
+)
+VALUES (%s, %s, %s)
+RETURNING id, created_at;
 """
 
 
