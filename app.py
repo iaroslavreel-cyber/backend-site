@@ -130,7 +130,10 @@ def support():
 
         return render_template(
             "support.html",
-            success_message="Ваш вопрос получен.",
+            success_message=(
+                "Ваш вопрос получен. "
+                f"Номер вопроса: {question['id']}."
+            ),
         )
 
     return render_template("support.html")
