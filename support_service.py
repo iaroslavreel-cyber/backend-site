@@ -1,4 +1,5 @@
 import os
+from contextlib import closing
 
 import psycopg2
 
@@ -41,38 +42,19 @@ def process_support_question(user_name, email, message):
             "Переменная окружения DATABASE_URL не установлена."
         )
 
-    connection = None
-    cursor = None
+    with closing(psycopg2.connect(database_url)) as connection:
+        with connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    INSERT_SUPPORT_QUESTION,
+                    (
+                        user_name,
+                        email,
+                        message,
+                    ),
+                )
 
-    try:
-        connection = psycopg2.connect(database_url)
-        cursor = connection.cursor()
-
-        cursor.execute(
-            INSERT_SUPPORT_QUESTION,
-            (
-                user_name,
-                email,
-                message,
-            ),
-        )
-
-        question_id, created_at = cursor.fetchone()
-
-        connection.commit()
-
-    except Exception:
-        if connection is not None:
-            connection.rollback()
-
-        raise
-
-    finally:
-        if cursor is not None:
-            cursor.close()
-
-        if connection is not None:
-            connection.close()
+                question_id, created_at = cursor.fetchone()
 
     return {
         "id": question_id,
