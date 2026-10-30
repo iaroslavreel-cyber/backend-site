@@ -14,16 +14,10 @@ from support_service import (
 )
 
 
-log_level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
-
-log_level = getattr(
-    logging,
-    log_level_name,
-    logging.INFO,
-)
+log_level_name = os.environ.get("LOG_LEVEL", "INFO").strip().upper()
 
 logging.basicConfig(
-    level=log_level,
+    level=logging.WARNING,
     format=(
         "%(asctime)s "
         "level=%(levelname)s "
@@ -36,6 +30,20 @@ logging.basicConfig(
 
 
 app = Flask(__name__)
+
+app.logger.setLevel(
+    os.environ.get("APP_LOG_LEVEL", log_level_name).strip().upper()
+)
+
+http_logger = logging.getLogger("yt_academy.http")
+http_logger.setLevel(
+    os.environ.get("HTTP_LOG_LEVEL", log_level_name).strip().upper()
+)
+
+support_logger = logging.getLogger("yt_academy.support")
+support_logger.setLevel(
+    os.environ.get("SUPPORT_LOG_LEVEL", log_level_name).strip().upper()
+)
 
 
 def get_client_ip():
@@ -72,7 +80,7 @@ def log_request(response):
         time.perf_counter() - g.request_started_at
     ) * 1000
 
-    app.logger.info(
+    http_logger.info(
         (
             "event=http_request "
             "user=%s "
@@ -99,7 +107,7 @@ def log_request(response):
 def handle_support_question_processing_error(error):
     g.user_name = error.user_name
 
-    app.logger.exception(
+    support_logger.exception(
         (
             "event=support_question_processing_failed "
             "user=%s "
@@ -148,6 +156,11 @@ def about():
 @app.route("/support", methods=["GET", "POST"])
 def support():
     if request.method == "POST":
+        support_logger.debug(
+            "event=support_question_received request_id=%s",
+            g.request_id,
+        )
+
         try:
             question = process_support_question(
                 request.form.get("name", ""),
@@ -166,7 +179,7 @@ def support():
 
         g.user_name = question["user_name"]
 
-        app.logger.info(
+        support_logger.info(
             (
                 "event=support_question_saved "
                 "user=%s "
@@ -227,9 +240,17 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
 
     app.logger.info(
-        "event=application_start port=%s log_level=%s",
+        (
+            "event=application_start "
+            "port=%s "
+            "app_log_level=%s "
+            "http_log_level=%s "
+            "support_log_level=%s"
+        ),
         port,
-        log_level_name,
+        logging.getLevelName(app.logger.getEffectiveLevel()),
+        logging.getLevelName(http_logger.getEffectiveLevel()),
+        logging.getLevelName(support_logger.getEffectiveLevel()),
     )
 
     app.logger.debug(
