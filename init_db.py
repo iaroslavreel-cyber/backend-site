@@ -1,4 +1,5 @@
 import os
+from contextlib import closing
 
 import psycopg2
 
@@ -22,29 +23,12 @@ def create_tables():
             "Переменная окружения DATABASE_URL не установлена."
         )
 
-    connection = None
+    with closing(psycopg2.connect(database_url)) as connection:
+        with connection:
+            with connection.cursor() as cursor:
+                cursor.execute(CREATE_SUPPORT_QUESTIONS_TABLE)
 
-    try:
-        connection = psycopg2.connect(database_url)
-        cursor = connection.cursor()
-
-        cursor.execute(CREATE_SUPPORT_QUESTIONS_TABLE)
-
-        connection.commit()
-
-        cursor.close()
-
-        print("Таблица support_questions успешно создана.")
-
-    except Exception:
-        if connection is not None:
-            connection.rollback()
-
-        raise
-
-    finally:
-        if connection is not None:
-            connection.close()
+    print("Таблица support_questions успешно создана.")
 
 
 if __name__ == "__main__":
