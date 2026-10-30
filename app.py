@@ -2,6 +2,7 @@ import logging
 import os
 import sys
 import time
+from ipaddress import ip_address
 from uuid import uuid4
 
 import psycopg2
@@ -38,10 +39,14 @@ app = Flask(__name__)
 
 
 def get_client_ip():
-    forwarded_for = request.headers.get("X-Forwarded-For")
+    if os.environ.get("RENDER") == "true":
+        cloudflare_ip = request.headers.get("CF-Connecting-IP")
 
-    if forwarded_for:
-        return forwarded_for.split(",")[0].strip()
+        if cloudflare_ip:
+            try:
+                return str(ip_address(cloudflare_ip.strip()))
+            except ValueError:
+                pass
 
     return request.remote_addr or "unknown"
 
