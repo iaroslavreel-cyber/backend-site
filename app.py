@@ -2,6 +2,7 @@ import logging
 import os
 import sys
 import time
+from contextlib import closing
 from ipaddress import ip_address
 from uuid import uuid4
 
@@ -214,14 +215,11 @@ def db_check():
         )
 
     try:
-        connection = psycopg2.connect(database_url)
-        cursor = connection.cursor()
-
-        cursor.execute("SELECT 1;")
-        result = cursor.fetchone()
-
-        cursor.close()
-        connection.close()
+        with closing(psycopg2.connect(database_url)) as connection:
+            with connection:
+                with connection.cursor() as cursor:
+                    cursor.execute("SELECT 1;")
+                    result = cursor.fetchone()
 
         return (
             "<h1>Database connection OK</h1>"
